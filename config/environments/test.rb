@@ -22,4 +22,6 @@ config.action_mailer.delivery_method = :test
 config.action_controller.allow_forgery_protection = false
 
 config.gem "shoulda", :lib => "shoulda", :version => "2.10.2"
-config.gem "factory_girl", :lib => "factory_girl", :version => "1.2.3"      
+config.gem "factory_girl", :lib => "factory_girl", :version => "1.2.3" 
+config.gem "cucumber", :version => "0.6.3"
+config.gem "spork", :version => "0.8.1"     
