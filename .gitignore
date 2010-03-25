@@ -29,6 +29,7 @@ public/images
 public/javascripts
 public/stylesheets
 public/ckeditora
+rerun.txt
 spree.gemspec
 spree_dev
 spree_test
