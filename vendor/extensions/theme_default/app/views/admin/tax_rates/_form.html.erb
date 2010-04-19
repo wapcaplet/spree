@@ -9,8 +9,8 @@
   </tr>
   <tr>
     <td><%=t("rate")%>:</td>
-    <td><%= f.text_field :amount %></td>
-  </tr>  
+    <td><%= f.text_field :amount, :size => 8 %> %</td>
+  </tr>
 </table>
 
 <%= render "admin/shared/calculator_fields", :f => f %>
