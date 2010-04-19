@@ -91,7 +91,7 @@ class ChargeTest < ActiveSupport::TestCase
         assert_equal("10.0", @ship_charge.calculate_adjustment.to_s)
       end
 
-      should "recalculate tax_charge, to be 0.05 of item total" do
+      should "recalculate tax_charge, to be 5% of item total" do
         assert_not_nil(Zone.global.include?(@order.shipment.address), "Default zone doesn't include address.")
         assert_equal Zone.global, TaxRate.find(:first).zone
         assert(!Zone.global.tax_rates.empty?)

@@ -31,9 +31,15 @@ class VatTaxCalculatorTest < ActiveSupport::TestCase
 
       context "for order with some taxable items" do
         setup do
-          @order.line_items = [Factory(:line_item, :variant => Factory(:variant, :product => @taxable), :price => 10, :quantity => 10),
-                               Factory(:line_item, :variant => Factory(:variant, :product => @non_taxable))]
-          @calculator = Calculator::Vat.new(:calculable => TaxRate.new(:amount => 0.05, :tax_category => @tax_category))
+          @order.line_items = [
+            Factory(:line_item,
+                    :variant => Factory(:variant, :product => @taxable),
+                    :price => 10,
+                    :quantity => 10),
+            Factory(:line_item,
+                    :variant => Factory(:variant, :product => @non_taxable))]
+          @calculator = Calculator::Vat.new(
+            :calculable => TaxRate.new(:amount => 5.0, :tax_category => @tax_category))
         end
         should "tax only the taxable line items" do
           assert_equal 5, @calculator.compute(@order)
@@ -47,7 +53,10 @@ class VatTaxCalculatorTest < ActiveSupport::TestCase
         Spree::Config.set({ :default_country_id => country.id })
         ZoneMember.create(:zoneable => country, :zone => Zone.global)
         tax_category = TaxCategory.create(:name => "foo")
-        Calculator::Vat.create!(:calculable => TaxRate.new(:amount => 0.05, :tax_category => tax_category, :zone => Zone.global))
+        Calculator::Vat.create!(
+          :calculable => TaxRate.new(:amount => 5.0,
+                                     :tax_category => tax_category,
+                                     :zone => Zone.global))
         @taxable = Factory(:product, :tax_category => tax_category)
       end
 
